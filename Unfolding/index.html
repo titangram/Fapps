@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>开卦 (The Unfolding)</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; }
+        .gua-xiang { font-size: 2em; margin-bottom: 10px; }
+        .yao-ci { margin-bottom: 5px; }
+        button { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+        #explanation { margin-top: 20px; border: 1px solid #ccc; padding: 10px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h1>开卦 (The Unfolding)</h1>
+
+    <div id="guaXiangDisplay" class="gua-xiang"></div>
+    <div id="guaNameDisplay"></div>
+    <div id="yaoCiDisplay"></div>
+
+    <button id="nextTurnBtn">抽取下一卦</button>
+    <button id="showExplanationBtn" class="hidden">查看解释</button>
+
+    <div id="explanation" class="hidden">
+        <h2>卦象解释</h2>
+        <p id="guaXiangExplanation"></p>
+        <h2>爻辞解释</h2>
+        <div id="yaoCiExplanation"></div>
+    </div>
+
+    <script>
+        const guaXiangDisplay = document.getElementById('guaXiangDisplay');
+        const guaNameDisplay = document.getElementById('guaNameDisplay');
+        const yaoCiDisplay = document.getElementById('yaoCiDisplay');
+        const nextTurnBtn = document.getElementById('nextTurnBtn');
+        const showExplanationBtn = document.getElementById('showExplanationBtn');
+        const explanationDiv = document.getElementById('explanation');
+        const guaXiangExplanation = document.getElementById('guaXiangExplanation');
+        const yaoCiExplanation = document.getElementById('yaoCiExplanation');
+
+        const yao = ['--', '—']; // 0: 阴爻, 1: 阳爻
+
+        // 简化版的六十四卦数据，包含卦名和爻辞。
+        // 在实际游戏中，这部分数据会更完整。
+        const guaData = [
+            {
+                name: "乾",
+                yaoCi: ["潜龙勿用", "见龙在田，利见大人", "君子终日乾乾，夕惕若厉，无咎", "或跃在渊，无咎", "飞龙在天，利见大人", "亢龙有悔"],
+                explanation: "代表天，具有刚健、积极的特性。"
+            },
+            {
+                name: "坤",
+                yaoCi: ["履霜，坚冰至", "直方大，不习无不利", "含章可贞。或从王事，无成有终", "括囊；无咎无誉", "黄裳，元吉", "龙战于野，其血玄黄"],
+                explanation: "代表地，具有柔顺、包容的特性。"
+            },
+            // ... 这里可以添加更多的卦象数据
+        ];
+
+        let currentGua;
+
+        function generateGua() {
+            let gua = [];
+            for (let i = 0; i < 6; i++) {
+                gua.push(yao[Math.floor(Math.random() * yao.length)]);
+            }
+            return gua.join('<br>');
+        }
+
+        function getRandomGuaData() {
+            return guaData[Math.floor(Math.random() * guaData.length)];
+        }
+
+        function displayGua() {
+            currentGua = getRandomGuaData();
+            guaXiangDisplay.innerHTML = generateGua();
+            guaNameDisplay.textContent = `卦名：${currentGua.name}`;
+
+            yaoCiDisplay.innerHTML = '';
+            currentGua.yaoCi.forEach((ci, index) => {
+                yaoCiDisplay.innerHTML += `<p class="yao-ci"><b>${getYaoPosition(index)}:</b> ${ci}</p>`;
+            });
+
+            showExplanationBtn.classList.remove('hidden');
+            explanationDiv.classList.add('hidden');
+        }
+
+        function getYaoPosition(index) {
+            switch (index) {
+                case 0: return "初九";
+                case 1: return "九二";
+                case 2: return "九三";
+                case 3: return "六四";
+                case 4: return "九五";
+                case 5: return "上九";
+                default: return "";
+            }
+        }
+
+        function showExplanation() {
+            guaXiangExplanation.textContent = currentGua.explanation;
+
+            yaoCiExplanation.innerHTML = '';
+            currentGua.yaoCi.forEach((ci, index) => {
+                yaoCiExplanation.innerHTML += `<p><b>${getYaoPosition(index)}:</b> ${ci} - (更详细的解释将在后续版本中添加)</p>`;
+            });
+
+            explanationDiv.classList.remove('hidden');
+        }
+
+        nextTurnBtn.addEventListener('click', displayGua);
+        showExplanationBtn.addEventListener('click', showExplanation);
+
+        // 游戏初始化，显示第一个卦象
+        displayGua();
+    </script>
+</body>
+</html>
