@@ -1,0 +1,482 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.game-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#game-area {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+    padding: 8px 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    height: 60px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-item.active {
+    color: #4a90e2;
+}
+
+.nav-icon {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.nav-item span {
+    font-size: 0.8rem;
+}
+
+/* 记忆游戏样式 */
+.memory-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 4px;
+    height: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    perspective: 1000px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.memory-card-front,
+.memory-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.8rem;
+    padding: 4px;
+}
+
+.memory-card-front {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.memory-card-back {
+    background: white;
+    transform: rotateY(180deg);
+    border: 1px solid #4a90e2;
+}
+
+.memory-card.flipped .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched .memory-card-back {
+    background: #e8f5e9;
+    border-color: #4caf50;
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+}
+
+/* 解读游戏样式 */
+.interpretation-container {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.current-symbol {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.option-btn {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.option-btn:hover {
+    background: #e0e0e0;
+}
+
+.option-btn.correct {
+    background: #4CAF50;
+    color: white;
+}
+
+.option-btn.incorrect {
+    background: #f44336;
+    color: white;
+    animation: shake 0.5s;
+}
+
+/* 配对游戏样式 */
+.matching-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 12px;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.symbols, .meanings {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: calc(100vh - 140px);
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding: 4px;
+}
+
+/* 隐藏滚动条 */
+.symbols::-webkit-scrollbar, 
+.meanings::-webkit-scrollbar {
+    display: none;
+}
+
+.symbol-card, .meaning-card {
+    flex: 0 0 auto;
+    min-height: 90px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meaning-card {
+    padding: 12px;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.symbol-card.selected, .meaning-card.selected {
+    background: #e3f2fd;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.symbol-card.matched, .meaning-card.matched {
+    background: #e8f5e9;
+    border: 1px solid #4caf50;
+}
+
+.symbol-card.incorrect, .meaning-card.incorrect {
+    animation: shake 0.5s;
+    background: #ffebee;
+    border: 1px solid #f44336;
+}
+
+@media (max-width: 768px) {
+    .matching-container {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .symbols, .meanings {
+        gap: 6px;
+        height: calc(100vh - 120px);
+    }
+
+    .symbol-card, .meaning-card {
+        min-height: 80px;
+    }
+
+    .meaning-card {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
+
+.home-poster {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-poster::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>') repeat;
+    opacity: 0.1;
+}
+
+.poster-content {
+    text-align: center;
+    z-index: 1;
+    animation: fadeIn 2s ease-out;
+}
+
+.poster-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    font-family: 'SimSun', serif;
+}
+
+.bagua-symbol {
+    font-size: 4rem;
+    margin: 1rem 0;
+    animation: rotate 20s linear infinite;
+}
+
+.poster-text {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    opacity: 0.9;
+    font-family: 'KaiTi', serif;
+}
+
+.yin-yang {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin: 2rem auto;
+    animation: rotate 10s linear infinite reverse;
+}
+
+.yin, .yang {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.yin {
+    left: 0;
+    background: #fff;
+    border: 2px solid #000;
+}
+
+.yang {
+    right: 0;
+    background: #000;
+    border: 2px solid #fff;
+}
+
+.yin::before, .yang::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.yin::before {
+    right: -10px;
+    background: #000;
+}
+
+.yang::before {
+    left: -10px;
+    background: #fff;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .poster-title {
+        font-size: 2rem;
+    }
+    
+    .bagua-symbol {
+        font-size: 3rem;
+    }
+    
+    .poster-text {
+        font-size: 1rem;
+    }
+    
+    .yin-yang {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .memory-container {
+        max-width: calc(100% - 16px);
+        margin: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .symbol-card {
+        min-height: 100px;
+        gap: 3px;
+        padding: 8px;
+    }
+    .symbol-upper, .symbol-lower {
+        font-size: 2rem;
+        min-height: 28px;
+        padding: 3px;
+    }
+}
+
+/* 卦象容器样式 */
+.gua-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    line-height: 0.8;
+}
+
+/* 单个卦的样式 */
+.gua {
+    font-size: 1.8rem;
+    line-height: 0.8;
+    height: 20px;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+}
+
+/* 卦象卡片样式 */
+.symbol-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 选中状态 */
+.symbol-card.selected .gua {
+    background: #e3f2fd;
+    transform: scale(1.05);
+}
+
+/* 匹配状态 */
+.symbol-card.matched .gua {
+    background: #e8f5e9;
+}
+
+/* 错误状态 */
+.symbol-card.incorrect .gua {
+    background: #ffebee;
+    animation: shake 0.5s;
+}
+
+@media (max-width: 768px) {
+    .gua {
+        font-size: 1.6rem;
+        height: 18px;
+        width: 46px;
+    }
+    
+    .symbol-card {
+        min-height: 90px;
+        padding: 6px;
+    }
+} 
