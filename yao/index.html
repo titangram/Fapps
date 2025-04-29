@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>《易经学习之旅》</title>
+    <title>易经探索者</title>
     <link rel="stylesheet" href="css/style.css">
-    </head>
+</head>
 <body>
-
-    <div id="app-container">
-        加载中...
+    <div id="game-container">
+        <div id="game-canvas"></div>
+        <div id="game-ui">
+            <div id="score">卦象收集：0/64</div>
+            <div id="hint">提示：点击开始探索</div>
+        </div>
     </div>
-
-    <script type="module" src="js/core/app.js"></script>
-
+    <script src="js/game.js"></script>
 </body>
 </html>
