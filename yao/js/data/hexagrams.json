@@ -1,0 +1,92 @@
+[
+    {
+        "id": "qian_wei_tian",
+        "symbol": "䷀",
+        "name": "乾为天",
+        "lower": "qian",
+        "upper": "qian",
+        "meaning": "强大、创造、顺利",
+        "situation": "纯粹阳刚，亨通顺利的开端或局面。"
+    },
+    {
+        "id": "kun_wei_di",
+        "symbol": "䷁",
+        "name": "坤为地",
+        "lower": "kun",
+        "upper": "kun",
+        "meaning": "包容、顺从、厚德载物",
+        "situation": "顺应自然，承载万物，宜静不宜动。"
+    },
+    {
+        "id": "tun",
+        "symbol": "䷔",
+        "name": "屯",
+        "lower": "zhen",
+        "upper": "kan",
+        "meaning": "艰难的开端、初创不易",
+        "situation": "事物刚开始，充满困难和挑战，需要耐心等待和积累。"
+    },
+    {
+        "id": "meng",
+        "symbol": "蒙",
+        "name": "蒙",
+        "lower": "kan",
+        "upper": "gen",
+        "meaning": "启蒙、学习、待开发",
+        "situation": "处于不明白、需要教导和学习的阶段。"
+    },
+    {
+        "id": "xi_kan",
+        "symbol": "坎",
+        "name": "习坎",
+        "lower": "kan",
+        "upper": "kan",
+        "meaning": "重重危险、陷落其中",
+        "situation": "连续的危险或困境，需要谨慎和坚定。"
+    },
+    {
+        "id": "li_wei_huo",
+        "symbol": "离",
+        "name": "离为火",
+        "lower": "li",
+        "upper": "li",
+        "meaning": "光明依附、反复明察",
+        "situation": "光明照耀，万物依附于此，需要反复观察和明辨。"
+    },
+     {
+        "id": "zhen_wei_lei",
+        "symbol": "震",
+        "name": "震为雷",
+        "lower": "zhen",
+        "upper": "zhen",
+        "meaning": "行动、震惊、奋起",
+        "situation": "突发的变动或行动，带来震惊，需要迅速应对。"
+    },
+     {
+        "id": "gen_wei_shan",
+        "symbol": "艮",
+        "name": "艮为山",
+        "lower": "gen",
+        "upper": "gen",
+        "meaning": "停止、稳固、阻碍",
+        "situation": "事物停滞不前，需要稳固自身或面临阻碍。"
+    },
+     {
+        "id": "xun_wei_feng",
+        "symbol": "巽",
+        "name": "巽为风",
+        "lower": "xun",
+        "upper": "xun",
+        "meaning": "进入、谦逊、命令",
+        "situation": "顺势而为，深入事物，或者传达命令。"
+    },
+    {
+        "id": "dui_wei_ze",
+        "symbol": "兑",
+        "name": "兑为泽",
+        "lower": "dui",
+        "upper": "dui",
+        "meaning": "喜悦、交流、聚集",
+        "situation": "和谐交流，带来喜悦，事物聚集或停留在表面。"
+    }
+]

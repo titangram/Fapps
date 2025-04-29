@@ -1,0 +1,74 @@
+[
+    {
+        "id": "qian",
+        "symbol": "☰",
+        "name": "乾",
+        "keyword": "创造/天",
+        "pattern": [1, 1, 1],
+        "nature": "天",
+        "family": "父"
+    },
+    {
+        "id": "kun",
+        "symbol": "☷",
+        "name": "坤",
+        "keyword": "顺应/地",
+        "pattern": [0, 0, 0],
+        "nature": "地",
+        "family": "母"
+    },
+    {
+        "id": "zhen",
+        "symbol": "☳",
+        "name": "震",
+        "keyword": "行动/雷",
+        "pattern": [0, 0, 1],
+        "nature": "雷",
+        "family": "长男"
+    },
+    {
+        "id": "xun",
+        "symbol": "☴",
+        "name": "巽",
+        "keyword": "进入/风",
+        "pattern": [1, 1, 0],
+        "nature": "风",
+        "family": "长女"
+    },
+    {
+        "id": "kan",
+        "symbol": "☵",
+        "name": "坎",
+        "keyword": "危险/水",
+        "pattern": [0, 1, 0],
+        "nature": "水",
+        "family": "中男"
+    },
+    {
+        "id": "gen",
+        "symbol": "☶",
+        "name": "艮",
+        "keyword": "停止/山",
+        "pattern": [1, 0, 0],
+        "nature": "山",
+        "family": "少男"
+    },
+    {
+        "id": "li",
+        "symbol": "☲",
+        "name": "离",
+        "keyword": "光明/火",
+        "pattern": [1, 0, 1],
+        "nature": "火",
+        "family": "中女"
+    },
+    {
+        "id": "dui",
+        "symbol": "☱",
+        "name": "兑",
+        "keyword": "喜悦/泽",
+        "pattern": [0, 1, 1],
+        "nature": "泽",
+        "family": "少女"
+    }
+]
