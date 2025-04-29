@@ -17,7 +17,7 @@ const useTutorial = (): UseTutorialReturn => {
     if (!hasSeenTutorial) {
       setShowTutorial(true);
     }
-  }, []); // 空依赖项，只在 hook 首次调用时运行一次
+  }, []); // 空依赖项，只在 hook 首次调用时运行一次.
 
   // 标记教程为已看过并关闭
   const markTutorialAsSeen = () => {
