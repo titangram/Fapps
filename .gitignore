@@ -3,7 +3,7 @@
 # 忽略 unpackage 文件夹
 unpackage/
 manifest.json
-Unfolding/.hbuilderx
+Unfolding/.hbuilderx/launch.json
 # 你也可以忽略其他编辑器或系统生成的临时文件，例如：
 # .vscode/       # 如果你不希望共享 VS Code 配置
 # *.log          # 忽略所有日志文件
