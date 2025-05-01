@@ -3,12 +3,4 @@
 # 忽略 unpackage 文件夹
 unpackage/
 manifest.json
-#Unfolding/.hbuilderx/launch.json
-#yao/index.html
-# 你也可以忽略其他编辑器或系统生成的临时文件，例如：
-# .vscode/       # 如果你不希望共享 VS Code 配置
-# *.log          # 忽略所有日志文件
-# *.DS_Store     # 忽略 macOS 的文件
-# thumbs.db      # 忽略 Windows 的文件缩略图缓存
-# unpackage/：这个文件夹看起来是某个打包工具或插件生成的，与你的核心项目代码无关，通常可以删除或添加到版本控制忽略列表 (.gitignore)。
-# manifest.json：这是 Web App Manifest 文件，用于 PWA (Progressive Web App)，保留它是可以的，但它不影响当前的游戏逻辑运行。
+Unfolding/.hbuilderx/launch.json
