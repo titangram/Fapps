@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./vw-data:/data
+    environment:
+      # 强烈建议设置 ADMIN_TOKEN 以启用管理界面 (https://github.com/dani-garcia/vaultwarden/wiki/Admin-Panel)
+      ADMIN_TOKEN: 'your_admin_token_here'
+      # 如果你计划使用邮件发送功能，请配置以下选项
+      # SMTP_HOST: 'your_smtp_host'
+      # SMTP_PORT: 'your_smtp_port'
+      # SMTP_USERNAME: 'your_smtp_username'
+      # SMTP_PASSWORD: 'your_smtp_password'
+      # SMTP_FROM: 'your_email_address'
+      # 启用 HTTPS (如果你有自己的证书)
+      # HTTPS: 'true'
+      # CERT_PATH: '/path/to/your/certificate.crt'
+      # KEY_PATH: '/path/to/your/private.key'
+      # 如果你希望 Vaultwarden 在子路径下运行 (例如: yourdomain.com/vault/), 取消注释并设置
+      # WEB_ROOT: '/vault'
+
+volumes:
+  vw-data:

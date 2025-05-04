@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>易经学习。</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript">
+    	
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+   			
+   		});
+   		
+    </script>
+</head>
+<body>
+    <div class="game-container">
+        <div id="game-area">
+            <div class="home-poster">
+                <div class="poster-content">
+                    <h1 class="poster-title">易经玄学</h1>
+                    <div class="bagua-symbol">☯</div>
+                    <p class="poster-text">探索宇宙奥秘</p>
+                    <p class="poster-text">领悟人生真谛</p>
+                    <div class="yin-yang">
+                        <div class="yin"></div>
+                        <div class="yang"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="bottom-nav">
+            <div class="nav-item" id="memory-game">
+                <div class="nav-icon">🎮</div>
+                <span>记忆</span>
+            </div>
+            <div class="nav-item" id="interpretation-game">
+                <div class="nav-icon">📚</div>
+                <span>解读</span>
+            </div>
+            <div class="nav-item" id="matching-game">
+                <div class="nav-icon">🎯</div>
+                <span>配对</span>
+            </div>
+        </nav>
+    </div>
+    <script type="module" src="js/game.js"></script>
+</body>
+</html>
